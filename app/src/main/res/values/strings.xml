@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">AmikomChat</string>
+    <string name="register_button">Don\'t have an account? <b>Register Here</b></string>
+    <string name="login_button">Already have an accout? <b>Login Here</b></string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

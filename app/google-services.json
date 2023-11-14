@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "282574292907",
+    "project_id": "amikomchat-ae7c2",
+    "storage_bucket": "amikomchat-ae7c2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:282574292907:android:10f17f749652116e1534ee",
+        "android_client_info": {
+          "package_name": "com.example.amikomchat"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCpqGg8EkHe3baN2Y3jGQeWpD8YoG1VhsY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
