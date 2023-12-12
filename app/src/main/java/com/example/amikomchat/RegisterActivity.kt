@@ -34,12 +34,11 @@ class RegisterActivity : AppCompatActivity() {
     private fun registerUser() {
         val emailInput = findViewById<EditText>(R.id.email_reg).text.toString()
         val passwordInput = findViewById<EditText>(R.id.pass_reg).text.toString()
-        val confirmPassInput = findViewById<EditText>(R.id.confirm_pass).text.toString()
+        val usernameInput = findViewById<EditText>(R.id.username_reg).text.toString()
 
-        if (passwordInput == confirmPassInput) {
-            val userId = dbHelper.addUser(emailInput, passwordInput)
+        val userId = dbHelper.addUser(usernameInput, emailInput, passwordInput)
 
-            if (userId > 0) {
+        if (userId > 0) {
                 // Registrasi berhasil, pindah ke MainActivity
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
@@ -48,9 +47,5 @@ class RegisterActivity : AppCompatActivity() {
                 // Registrasi gagal, tampilkan pesan kesalahan
                 // (Anda bisa menambahkan TextView untuk menampilkan pesan kesalahan)
             }
-        } else {
-            // Password tidak cocok, tampilkan pesan kesalahan
-            // (Anda bisa menambahkan TextView untuk menampilkan pesan kesalahan)
-        }
     }
 }

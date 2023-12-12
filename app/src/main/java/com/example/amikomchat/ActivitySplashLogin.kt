@@ -5,9 +5,11 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 
 class ActivitySplashLogin : AppCompatActivity() {
 
@@ -50,13 +52,18 @@ class ActivitySplashLogin : AppCompatActivity() {
 
         if (user != null && user.password == passwordInput) {
             // Login berhasil, pindah ke MainActivity
+            saveLoggedInEmail(emailInput)
             saveLoginStatus(true)
             startMainActivity()
         } else {
-            // Login gagal, tampilkan pesan kesalahan
-            // (Anda bisa menambahkan TextView untuk menampilkan pesan kesalahan)
+            // Password tidak cocok, tampilkan pesan kesalahan
+            Toast.makeText(this, "tidak sesuai", Toast.LENGTH_SHORT).show()
         }
     }
+
+
+
+
 
     private fun saveLoginStatus(isLoggedIn: Boolean) {
         val sharedPreferences = getSharedPreferences("login_status", Context.MODE_PRIVATE)
@@ -70,4 +77,23 @@ class ActivitySplashLogin : AppCompatActivity() {
         startActivity(intent)
         finish()
     }
+
+    // Di ActivitySplashLogin
+    private fun saveLoggedInEmail(email: String) {
+        Log.d("SaveLoggedInEmail", "Saving email: $email")
+        val sharedPreferences = getSharedPreferences("login_status", Context.MODE_PRIVATE)
+        val editor = sharedPreferences.edit()
+        editor.putString("loggedInEmail", email)
+        editor.apply()
+    }
+
+
+    private fun getLoggedInEmail(): String? {
+        val sharedPreferences = getSharedPreferences("login_status", Context.MODE_PRIVATE)
+        val email = sharedPreferences.getString("loggedInEmail", null)
+        Log.d("GetLoggedInEmail", "Retrieved email: $email")
+        return email
+    }
+
+
 }
