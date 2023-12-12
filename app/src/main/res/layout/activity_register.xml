@@ -94,10 +94,24 @@
                 android:textSize="14sp" />
 
             <EditText
+                android:id="@+id/username_reg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/edittext_bg"
+                android:drawableStart="@drawable/baseline_person_24"
+                android:drawableLeft="@drawable/baseline_person_24"
+                android:drawablePadding="16dp"
+                android:hint="Username"
+                android:inputType="text"
+                android:padding="16dp"
+                android:textSize="14sp" />
+
+            <EditText
                 android:id="@+id/email_reg"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="20dp"
                 android:background="@drawable/edittext_bg"
                 android:drawableStart="@drawable/baseline_mail_24"
                 android:drawableLeft="@drawable/baseline_mail_24"
@@ -123,22 +137,6 @@
                 android:padding="16dp"
                 android:textSize="14sp" />
 
-            <EditText
-                android:id="@+id/confirm_pass"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:background="@drawable/edittext_bg"
-                android:drawableStart="@drawable/baseline_lock_24"
-                android:drawableLeft="@drawable/baseline_lock_24"
-                android:drawableEnd="@drawable/baseline_visibility_24"
-                android:drawableRight="@drawable/baseline_visibility_24"
-                android:drawablePadding="16dp"
-                android:hint="Confirm Password"
-                android:inputType="textPassword"
-                android:padding="16dp"
-                android:textSize="14sp" />
-
             <Button
                 android:id="@+id/btn_register"
                 android:layout_width="match_parent"
@@ -147,6 +145,7 @@
                 android:background="@drawable/button_bg"
                 android:text="Register"
                 android:textColor="@color/white" />
+
 
         </LinearLayout>
 
