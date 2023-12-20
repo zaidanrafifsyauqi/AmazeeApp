@@ -107,4 +107,21 @@ class DBhelper(private val context: Context) : SQLiteOpenHelper(context, DATABAS
         editor.putBoolean("isLoggedIn", status)
         editor.apply()
     }
+
+    fun getUserByEmail(email: String): User? {
+        val db = this.readableDatabase
+        val cursor = db.query(
+            TABLE_USERS, arrayOf(KEY_ID, KEY_EMAIL, KEY_PASSWORD, KEY_USERNAME),
+            "$KEY_EMAIL=?", arrayOf(email), null, null, null, null
+        )
+        return if (cursor != null && cursor.moveToFirst()) {
+            val id = cursor.getInt(cursor.getColumnIndex(KEY_ID))
+            val storedEmail = cursor.getString(cursor.getColumnIndex(KEY_EMAIL))
+            val storedPassword = cursor.getString(cursor.getColumnIndex(KEY_PASSWORD))
+            val storedUsername = cursor.getString(cursor.getColumnIndex(KEY_USERNAME))
+            User(id, storedEmail, storedPassword, storedUsername)
+        } else {
+            null
+        }
+    }
 }

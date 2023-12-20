@@ -14,6 +14,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageButton
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.example.amikomchat.ActivitySplashLogin
 import com.example.amikomchat.R
@@ -23,6 +24,8 @@ class FragmentProfile : Fragment() {
 
     private val PICK_IMAGE_REQUEST = 1
     private lateinit var imageView: CircleImageView
+    private var selectedImageUri: Uri? = null
+    private lateinit var imageProfilePath: String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,14 +47,12 @@ class FragmentProfile : Fragment() {
 
         // Coba memuat gambar profil dari penyimpanan lokal
         if (view != null) {
-//            loadProfileImage(view)
-//            loadProfileImage(requireView())
             imageView = view.findViewById(R.id.imageView2)
             loadProfileImage()
         }
 
-        val editTextUsername: EditText = view.findViewById(R.id.editTextUsername)
-        val editTextEmail: EditText = view.findViewById(R.id.editTextEmail)
+        val editTextUsername: TextView = view.findViewById(R.id.editTextUsername)
+        val editTextEmail: TextView = view.findViewById(R.id.editTextEmail)
 
         val userEmail = getLoggedInEmail()
         if (!userEmail.isNullOrEmpty()) {
@@ -72,10 +73,26 @@ class FragmentProfile : Fragment() {
         }
 
         // Hapus EditText yang ada untuk email
-        editTextEmail.visibility = View.GONE
+        editTextUsername.visibility = View.VISIBLE
+        editTextEmail.visibility = View.VISIBLE
 
         return view
     }
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        outState.putString("imageProfilePath", imageProfilePath)
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        imageProfilePath = savedInstanceState?.getString("imageProfilePath").toString()
+        if (imageProfilePath != null) {
+            // Setel gambar pada ImageView
+            imageView.setImageURI(Uri.parse(imageProfilePath))
+        }
+    }
+
+
 
     private fun openGallery() {
         val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
@@ -86,18 +103,15 @@ class FragmentProfile : Fragment() {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (requestCode == PICK_IMAGE_REQUEST && resultCode == Activity.RESULT_OK && data != null) {
-            val selectedImage = data.data
-            // Dapatkan nama file gambar dari URI
-            val imageProfile = getRealPathFromURI(selectedImage)
-            // Simpan nama file gambar ke database
-            saveImageProfileToDatabase(imageProfile)
-            // Tampilkan gambar di ImageView
+            selectedImageUri = data.data
             val imageView: CircleImageView = requireView().findViewById(R.id.imageView2)
-            imageView.setImageURI(selectedImage)
+            imageView.setImageURI(selectedImageUri)
+
+            // Save image profile after selecting an image
+            saveImageProfileToDatabase()
         }
     }
 
-    // Metode ini mengambil nama file gambar dari URI
     private fun getRealPathFromURI(uri: Uri?): String {
         val cursor = context?.contentResolver?.query(uri!!, null, null, null, null)
         val index = cursor?.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
@@ -107,35 +121,17 @@ class FragmentProfile : Fragment() {
         return path ?: ""
     }
 
-    private fun saveImageProfileToDatabase(imageProfile: String) {
+    private fun saveImageProfileToDatabase() {
         val userEmail = getLoggedInEmail()
-        if (!userEmail.isNullOrEmpty()) {
+        if (!userEmail.isNullOrEmpty() && selectedImageUri != null) {
             val dbHelper = DBhelper(requireContext())
-            dbHelper.saveImageProfile(userEmail, imageProfile)
+            val imageProfilePath = getRealPathFromURI(selectedImageUri)
+            dbHelper.saveImageProfile(userEmail, imageProfilePath)
         } else {
-            // Tambahkan logging
-            Log.e("FragmentProfile", "User email is null or empty")
+            // Log an error
+            Log.e("FragmentProfile", "User email or selected image URI is null or empty")
         }
     }
-
-//    private fun loadProfileImage(view: View) {
-//        val userEmail = getLoggedInEmail()
-//        if (!userEmail.isNullOrEmpty()) {
-//            val dbHelper = DBhelper(requireContext())
-//            val imageProfilePath = dbHelper.getImageProfile(userEmail)
-//
-//            if (!imageProfilePath.isNullOrEmpty()) {
-//                val imageView: CircleImageView = view.findViewById(R.id.imageView2)
-//                imageView.setImageURI(Uri.parse(imageProfilePath))
-//            } else {
-//                // Tambahkan logging
-//                Log.e("FragmentProfile", "Image profile path is null or empty")
-//            }
-//        } else {
-//            // Tambahkan logging
-//            Log.e("FragmentProfile", "User email is null or empty")
-//        }
-//    }
 
     private fun loadProfileImage() {
         val userEmail = getLoggedInEmail()
@@ -154,7 +150,6 @@ class FragmentProfile : Fragment() {
             Log.e("FragmentProfile", "User email is null or empty")
         }
     }
-
 
     private fun saveLoggedInEmail(email: String) {
         Log.d("SaveLoggedInEmail", "Saving email: $email")

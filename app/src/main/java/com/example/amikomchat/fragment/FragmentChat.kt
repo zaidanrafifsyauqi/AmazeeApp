@@ -5,6 +5,8 @@ import android.telecom.Call
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -26,10 +28,11 @@ class FragmentChat : Fragment() {
     val API_KEY = "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"
     private lateinit var recyclerView: RecyclerView
     private lateinit var messageEditText: TextInputEditText
-    private lateinit var sendButton: MaterialButton
+    private lateinit var sendButton: ImageButton
     private lateinit var messageList: MutableList<Message>
     private lateinit var messageAdapter: MessageAdapter
     private val client = OkHttpClient()
+    private var isWelcomeTextVisible = true
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -58,6 +61,11 @@ class FragmentChat : Fragment() {
     }
 
     private fun addToChat(message: String, sentBy: String) {
+
+        if (isWelcomeTextVisible) {
+            view?.findViewById<TextView>(R.id.welcome_text)?.visibility = View.GONE
+            isWelcomeTextVisible = false
+        }
         messageList.add(Message(message, sentBy))
         messageAdapter.notifyDataSetChanged()
         recyclerView.smoothScrollToPosition(messageAdapter.itemCount)

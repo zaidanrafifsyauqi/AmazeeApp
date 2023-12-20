@@ -40,7 +40,7 @@ class RegisterActivity : AppCompatActivity() {
 
         if (userId > 0) {
                 // Registrasi berhasil, pindah ke MainActivity
-                val intent = Intent(this, MainActivity::class.java)
+                val intent = Intent(this, ActivitySplashLogin::class.java)
                 startActivity(intent)
                 finish()
             } else {
