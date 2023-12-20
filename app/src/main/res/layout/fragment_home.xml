@@ -23,15 +23,15 @@
                 android:layout_height="150dp"
                 app:cardBackgroundColor="#5E3BED"
                 android:layout_marginTop="30dp"
-                android:layout_marginEnd="45dp"
-                android:layout_marginStart="35dp"
+                android:layout_marginEnd="40dp"
+                android:layout_marginStart="40dp"
                 app:cardElevation="20dp"
                 app:cardCornerRadius="20dp">
 
                 <com.denzcoskun.imageslider.ImageSlider
                     android:id="@+id/image_slider"
                     android:layout_width="wrap_content"
-                    android:layout_height="150dp"
+                    android:layout_height="160dp"
                     app:iss_period="1000"
                     app:iss_delay="1000"
                     app:iss_text_align="CENTER"/>
@@ -165,7 +165,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="8dp"
-                            android:text="News"
+                            android:text="Feed"
                             android:textAlignment="center"
                             android:textColor="#2e3d6d"
                             android:textSize="14sp"
@@ -255,7 +255,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_marginTop="8dp"
-                            android:text="Organisasi"
+                            android:text="Organization"
                             android:textAlignment="center"
                             android:textColor="#2e3d6d"
                             android:textSize="14sp"
