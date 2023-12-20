@@ -5,10 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.denzcoskun.imageslider.ImageSlider
-import com.denzcoskun.imageslider.constants.ScaleTypes
-import com.denzcoskun.imageslider.models.SlideModel
-
 import com.example.amikomchat.R
 
 // TODO: Rename parameter arguments, choose names that match
@@ -21,9 +17,7 @@ private const val ARG_PARAM2 = "param2"
  * Use the [FragmentHome.newInstance] factory method to
  * create an instance of this fragment.
  */
-class FragmentHome : Fragment(R.layout.fragment_home) {
-    private lateinit var imageSlider: Any
-
+class FragmentHome : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -34,7 +28,6 @@ class FragmentHome : Fragment(R.layout.fragment_home) {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
-
     }
 
     override fun onCreateView(
@@ -43,17 +36,6 @@ class FragmentHome : Fragment(R.layout.fragment_home) {
     ): View? {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_home, container, false)
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        val imageSlider = view.findViewById<ImageSlider>(R.id.image_slider)
-        val imageList = ArrayList<SlideModel>()
-        imageList.add(SlideModel("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSWEcld-8qPibqqoT5oEWHznz5fBHgYxw9rQ&usqp=CAU"))
-        imageList.add(SlideModel("https://home.amikom.ac.id/media/2020/01/HEAD.jpg"))
-
-        imageSlider.setImageList(imageList, ScaleTypes.CENTER_INSIDE)
     }
 
     companion object {
@@ -75,7 +57,4 @@ class FragmentHome : Fragment(R.layout.fragment_home) {
                 }
             }
     }
-
-
-
 }
