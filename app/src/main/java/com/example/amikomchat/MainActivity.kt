@@ -38,8 +38,6 @@ class MainActivity : AppCompatActivity() {
         if (savedInstanceState == null) {
             replaceFragment(fragmentChat)
         }
-
-
     }
 
     private fun replaceFragment(fragment: Fragment) {
