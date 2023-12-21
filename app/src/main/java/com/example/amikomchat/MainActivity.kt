@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import com.example.amikomchat.fragment.FragmentChat
 import com.example.amikomchat.fragment.FragmentHome
 import com.example.amikomchat.fragment.FragmentNews
+import com.example.amikomchat.fragment.FragmentOrganisasi
 import com.example.amikomchat.fragment.FragmentProfile
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -16,6 +17,7 @@ class MainActivity : AppCompatActivity() {
     private val fragmentChat = FragmentChat()
     private val fragmentNews = FragmentNews()
     private val fragmentProfile = FragmentProfile()
+    private val fragmentOrganisasi = FragmentOrganisasi()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

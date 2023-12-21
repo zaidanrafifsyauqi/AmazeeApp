@@ -122,13 +122,12 @@
                                 android:layout_width="60dp"
                                 android:layout_height="60dp"
                                 android:layout_gravity="center_horizontal"
-                                android:layout_margin="12dp"
-                                android:background="@drawable/oval_background">
+                                android:layout_margin="12dp">
 
                                 <ImageView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:src="@drawable/wallet"
+                                    android:src="@drawable/baseline_wallet_24"
                                     app:layout_constraintBottom_toBottomOf="parent"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintStart_toStartOf="parent"
@@ -159,13 +158,12 @@
                                 android:layout_width="60dp"
                                 android:layout_height="60dp"
                                 android:layout_gravity="center_horizontal"
-                                android:layout_margin="12dp"
-                                android:background="@drawable/oval_background">
+                                android:layout_margin="12dp">
 
                                 <ImageView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:src="@drawable/settings"
+                                    android:src="@drawable/baseline_brightness_5_24"
                                     app:layout_constraintBottom_toBottomOf="parent"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintStart_toStartOf="parent"
@@ -196,13 +194,12 @@
                                 android:layout_width="60dp"
                                 android:layout_height="60dp"
                                 android:layout_gravity="center_horizontal"
-                                android:layout_margin="12dp"
-                                android:background="@drawable/oval_background">
+                                android:layout_margin="12dp">
 
                                 <ImageView
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
-                                    android:src="@drawable/notification"
+                                    android:src="@drawable/baseline_notification_important_24"
                                     app:layout_constraintBottom_toBottomOf="parent"
                                     app:layout_constraintEnd_toEndOf="parent"
                                     app:layout_constraintStart_toStartOf="parent"
@@ -226,7 +223,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="10dp"
                         android:layout_margin="10dp"
-                        android:layout_marginTop="24dp"
+                        android:layout_marginTop="30dp"
                         android:layout_marginEnd="10dp"
                         android:layout_marginBottom="10dp"
                         android:orientation="horizontal">
@@ -237,7 +234,6 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:text="Password"
-                            android:textColor="#C690CF"
                             android:textSize="18sp" />
 
                         <TextView
@@ -275,7 +271,6 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:text="Mobile"
-                            android:textColor="#C690CF"
                             android:textSize="18sp" />
 
                         <TextView
@@ -311,8 +306,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
-                            android:text="Tel."
-                            android:textColor="#C690CF"
+                            android:text="Number"
                             android:textSize="18sp" />
 
                         <TextView
@@ -349,7 +343,6 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:text="Address"
-                            android:textColor="#C690CF"
                             android:textSize="18sp" />
 
                         <TextView
@@ -386,7 +379,6 @@
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:textSize="18sp"
-                            android:textColor="#C690CF"
                             android:text="PostalCode" />
 
                         <TextView
