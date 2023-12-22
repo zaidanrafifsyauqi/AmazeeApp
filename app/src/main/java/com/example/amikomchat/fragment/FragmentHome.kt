@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import com.denzcoskun.imageslider.ImageSlider
 import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
@@ -42,7 +43,36 @@ class FragmentHome : Fragment(R.layout.fragment_home) {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false)
+        val view = inflater.inflate(R.layout.fragment_home, container, false)
+        val BtnChat : ImageView = view.findViewById(R.id.menu1)
+        val BtnFeed : ImageView = view.findViewById(R.id.menu2)
+        val BtnTodo : ImageView = view.findViewById(R.id.menu3)
+        val BtnOrganisasi : ImageView = view.findViewById(R.id.menu4)
+
+        BtnChat.setOnClickListener {
+            val chat = FragmentChat()
+            val transaction = fragmentManager?.beginTransaction()
+            transaction?.replace(R.id.fragment_container,chat)?.commit()
+        }
+
+        BtnFeed.setOnClickListener {
+            val feed = FragmentNews()
+            val transaction = fragmentManager?.beginTransaction()
+            transaction?.replace(R.id.fragment_container,feed)?.commit()
+        }
+
+//        BtnTodo.setOnClickListener {
+//            val todo = FragmentOrganisasi()
+//            val transaction = fragmentManager?.beginTransaction()
+//            transaction?.replace(R.id.fragment_container,organisasi)?.commit()
+//        }
+        
+        BtnOrganisasi.setOnClickListener {
+            val organisasi = FragmentOrganisasi()
+            val transaction = fragmentManager?.beginTransaction()
+            transaction?.replace(R.id.fragment_container,organisasi)?.commit()
+        }
+        return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
