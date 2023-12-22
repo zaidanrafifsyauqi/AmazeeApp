@@ -1,15 +1,19 @@
 package com.example.amikomchat.fragment
 
+import FragmentNews
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import com.denzcoskun.imageslider.ImageSlider
 import com.denzcoskun.imageslider.constants.ScaleTypes
 import com.denzcoskun.imageslider.models.SlideModel
 
 import com.example.amikomchat.R
+import com.example.amikomchat.TdlActivity
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -42,7 +46,36 @@ class FragmentHome : Fragment(R.layout.fragment_home) {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false)
+        val view = inflater.inflate(R.layout.fragment_home, container, false)
+        val BtnChat : ImageView = view.findViewById(R.id.menu1)
+        val BtnFeed : ImageView = view.findViewById(R.id.menu2)
+        val BtnOrganisasi : ImageView = view.findViewById(R.id.menu4)
+
+        BtnChat.setOnClickListener {
+            val chat = FragmentChat()
+            val transaction = fragmentManager?.beginTransaction()
+            transaction?.replace(R.id.fragment_container,chat)?.commit()
+        }
+
+        BtnFeed.setOnClickListener {
+            val feed = FragmentNews()
+            val transaction = fragmentManager?.beginTransaction()
+            transaction?.replace(R.id.fragment_container,feed)?.commit()
+        }
+
+        val btnTDL: ImageView = view.findViewById(R.id.buttonTDL)
+
+        btnTDL.setOnClickListener {
+            val intent = Intent(requireContext(), TdlActivity::class.java)
+            startActivity(intent)
+        }
+
+        BtnOrganisasi.setOnClickListener {
+            val organisasi = FragmentOrganisasi()
+            val transaction = fragmentManager?.beginTransaction()
+            transaction?.replace(R.id.fragment_container,organisasi)?.commit()
+        }
+        return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

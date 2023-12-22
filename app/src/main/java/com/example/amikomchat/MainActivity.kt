@@ -1,11 +1,11 @@
 package com.example.amikomchat
 
+import FragmentNews
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import com.example.amikomchat.fragment.FragmentChat
 import com.example.amikomchat.fragment.FragmentHome
-import com.example.amikomchat.fragment.FragmentNews
 import com.example.amikomchat.fragment.FragmentProfile
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
@@ -32,11 +32,11 @@ class MainActivity : AppCompatActivity() {
             }
             true
         }
-        bottomNavigation.selectedItemId = R.id.menu_item_2
+        bottomNavigation.selectedItemId = R.id.menu_item_1
 
         // Menampilkan Fragment pertama saat aplikasi pertama kali dijalankan
         if (savedInstanceState == null) {
-            replaceFragment(fragmentChat)
+            replaceFragment(fragmentHome)
         }
     }
 

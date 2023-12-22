@@ -4,4 +4,15 @@
     <string name="login_button">Already have an accout? <b>Login Here</b></string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="detail_resep">Detail Resep</string>
+    <string name="thumb_resep">Gambar Resep</string>
+    <string name="bahan_bahan">Bahan - Bahan</string>
+    <string name="cara_membuat">Cara Membuat</string>
+    <string name="menu_share">Bagikan</string>
+    <string name="menu_about">Tentang Saya</string>
+    <string name="my_name">D. Syafa\'atul Anbiya</string>
+    <string name="my_email">dikisyafaatul@gmail.com</string>
+    <string name="times">Waktu</string>
+    <string name="serving">Porsi</string>
+    <string name="difficulty">Kesulitan</string>
 </resources>

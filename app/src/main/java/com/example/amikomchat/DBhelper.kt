@@ -1,3 +1,4 @@
+import android.annotation.SuppressLint
 import android.content.ContentValues
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
@@ -7,7 +8,7 @@ import com.example.amikomchat.model.User
 class DBhelper(private val context: Context) : SQLiteOpenHelper(context, DATABASE_NAME, null, DATABASE_VERSION) {
 
     companion object {
-        private const val DATABASE_VERSION = 2
+        private const val DATABASE_VERSION = 5
         private const val DATABASE_NAME = "AmikomChatDB"
         private const val TABLE_USERS = "users"
         private const val KEY_ID = "id"
@@ -25,10 +26,11 @@ class DBhelper(private val context: Context) : SQLiteOpenHelper(context, DATABAS
 
 
     override fun onUpgrade(db: SQLiteDatabase?, oldVersion: Int, newVersion: Int) {
-        if (oldVersion < 2) {
+        if (oldVersion < 5) {
             db?.execSQL("ALTER TABLE $TABLE_USERS ADD COLUMN $KEY_IMAGE_PROFILE TEXT")
         }
     }
+
 
     fun addUser(username: String, email: String, password: String): Long {
         val db = this.writableDatabase
@@ -51,9 +53,7 @@ class DBhelper(private val context: Context) : SQLiteOpenHelper(context, DATABAS
         return id
     }
 
-
-
-
+    @SuppressLint("Range")
     fun getUser(email: String): User? {
         val db = this.readableDatabase
         val cursor = db.query(
@@ -88,18 +88,25 @@ class DBhelper(private val context: Context) : SQLiteOpenHelper(context, DATABAS
         return db.update(TABLE_USERS, values, "$KEY_EMAIL=?", arrayOf(email))
     }
 
+    @SuppressLint("Range")
     fun getImageProfile(email: String): String? {
         val db = this.readableDatabase
         val cursor = db.query(
             TABLE_USERS, arrayOf(KEY_IMAGE_PROFILE),
             "$KEY_EMAIL=?", arrayOf(email), null, null, null, null
         )
-        return if (cursor != null && cursor.moveToFirst()) {
-            cursor.getString(cursor.getColumnIndex(KEY_IMAGE_PROFILE))
-        } else {
-            null
+
+        return try {
+            if (cursor != null && cursor.moveToFirst()) {
+                cursor.getString(cursor.getColumnIndex(KEY_IMAGE_PROFILE))
+            } else {
+                null
+            }
+        } finally {
+            cursor?.close()
         }
     }
+
 
     private fun saveLoginStatus(status: Boolean) {
         val sharedPreferences = context.getSharedPreferences("login_status", Context.MODE_PRIVATE)
@@ -108,6 +115,7 @@ class DBhelper(private val context: Context) : SQLiteOpenHelper(context, DATABAS
         editor.apply()
     }
 
+    @SuppressLint("Range")
     fun getUserByEmail(email: String): User? {
         val db = this.readableDatabase
         val cursor = db.query(

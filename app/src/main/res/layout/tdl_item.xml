@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="10dp"
+        app:cardElevation="5dp"
+        app:cardBackgroundColor="#FFFFFF"
+        app:cardPreventCornerOverlap="false"
+        app:cardMaxElevation="10dp"
+        app:cardUseCompatPadding="true">
+
+        <RelativeLayout
+            android:id="@+id/card_tdl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/judul"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:fontFamily="sans-serif"
+                android:text="Judul List"
+                android:textColor="#454545"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/prioritas"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/judul"
+                android:layout_alignParentStart="true"
+                android:layout_marginTop="4dp"
+                android:fontFamily="sans-serif"
+                android:text="Prioritas - Penting Banget !"
+                android:textColor="#454545"
+                android:textSize="15sp" />
+
+            <ImageButton
+                android:id="@+id/imageViewEditTdl"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_alignParentTop="true"
+                android:layout_marginTop="-5dp"
+                android:layout_marginEnd="2dp"
+                android:layout_toStartOf="@+id/imageViewDeleteTdl"
+                android:background="@drawable/button_selector"
+                android:contentDescription="Edit TDL"
+                android:onClick="onEditTdlClick"
+                app:srcCompat="@drawable/tdledit" />
+
+            <ImageButton
+                android:id="@+id/imageViewDeleteTdl"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginTop="-5dp"
+                android:layout_marginEnd="-5dp"
+                android:background="@drawable/button_selector"
+                android:contentDescription="Delete TDL"
+                android:onClick="onDeleteTdlClick"
+                android:src="@drawable/tdldelete" />
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+</LinearLayout>
